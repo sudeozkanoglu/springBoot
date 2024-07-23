@@ -16,7 +16,7 @@ import java.util.List;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long employeeId;
+    private Long employee_id;
 
     @Column(name = "emplooyee_name")
     private String employeeName;

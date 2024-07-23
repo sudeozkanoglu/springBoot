@@ -23,7 +23,7 @@ public class ActivityService {
         savedActivity.setActivityDate(activity.getActivityDate());
         savedActivity.setActivityTime(activity.getActivityTime());
         savedActivity.setTargetGroup(activity.getTargetGroup());
-        savedActivity.setLimit(activity.getLimit());
+        savedActivity.setPersonLimit(activity.getPersonLimit());
         activityRepository.save(savedActivity);
     }
 }

@@ -22,8 +22,8 @@ public class Activity {
     @Column(name = "name")
     private String activityName;
 
-    @Column(name = "limit")
-    private int limit;
+    @Column(name = "personLimit")
+    private int personLimit;
 
     @Column(name = "target_group")
     private String targetGroup;

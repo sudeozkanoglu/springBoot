@@ -56,7 +56,7 @@ public class Customer {
 
     //Çalışan ile bireçok ilişki
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     //Rezervasyon ile bireçok ilişki
