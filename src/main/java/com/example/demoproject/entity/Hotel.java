@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "hotels")
@@ -39,4 +40,24 @@ public class Hotel {
 
     @OneToOne(mappedBy = "hotel")  //İletişim bilgileri ile birebir ilişki
     private ContactInformation contactInformation;
+
+    //Calisan ile bireçok ilişki
+    @OneToMany(mappedBy = "hotel")
+    private List<Employee>employees;
+
+    //Personel Yakını ile bireçok ilişki
+    @OneToMany(mappedBy = "hotel")
+    private List<Relatives> relatives;
+
+    //Etkinlik ile bireçok ilişki
+    @OneToMany(mappedBy = "hotel")
+    private List<Activity> activities;
+
+    //Gelir ile bireçok ilişki
+    @OneToMany(mappedBy = "hotel")
+    private List<Income> incomes;
+
+    @OneToMany(mappedBy = "hotel")
+    private List<Expense>expenses;
+
 }

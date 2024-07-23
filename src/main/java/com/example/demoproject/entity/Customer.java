@@ -54,4 +54,13 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<ContactInformation>contactInformations;
 
+    //Çalışan ile bireçok ilişki
+    @ManyToOne
+    @JoinColumn(name = "employee_id", nullable = false)
+    private Employee employee;
+
+    //Rezervasyon ile bireçok ilişki
+    @OneToMany(mappedBy = "customer")
+    private List<Rezervation> rezervations;
+
 }
