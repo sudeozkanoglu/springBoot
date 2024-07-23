@@ -27,8 +27,14 @@ public class CustomerService {
     public void saveCustomer(Customer customer)
     {
         Customer customerSaved = new Customer(); //yeni customer yarat
-        customerSaved.setFirstName(customer.getFirstName()); //ilgili özelliklerini kullanıcıdan al
-        customerSaved.setLastName(customer.getLastName());
+        customerSaved.setCustomerfirstName(customer.getCustomerfirstName()); //ilgili özelliklerini kullanıcıdan al
+        customerSaved.setCustomerlastName(customer.getCustomerlastName());
+        customerSaved.setCustomerIdentityNumber(customer.getCustomerIdentityNumber());
+        customerSaved.setCustomerRecordNumber(customer.getCustomerRecordNumber());
+        customerSaved.setCustomerMarialStatus(customer.getCustomerMarialStatus());
+        customerSaved.setCustomerGender(customer.getCustomerGender());
+        customerSaved.setCustomerBirthData(customer.getCustomerBirthData());
+        customerSaved.setCustomerType(customer.getCustomerType());
         customerRepository.save(customerSaved); //database e kaydet
     }
 
