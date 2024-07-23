@@ -44,10 +44,6 @@ public class Employee {
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
-    //Müşteri ile bireçok ilişki
-    @OneToMany(mappedBy = "employee")
-    private List<Customer> customers;
-
     //Personel Yakını ile bireçok ilişki
     @OneToMany(mappedBy = "employee")
     private List<Relatives> relatives;

@@ -40,4 +40,12 @@ public class ContactInformation {
     @OneToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id", nullable = false)
+    private Employee employee;
+
+    @ManyToOne
+    @JoinColumn(name = "relatives_id", nullable = false)
+    private Relatives relatives;
 }

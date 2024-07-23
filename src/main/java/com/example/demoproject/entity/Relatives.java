@@ -47,7 +47,7 @@ public class Relatives {
     private Employee employee;
 
     @ManyToOne //Otel
-    @JoinColumn(name = "hotel_id," , nullable = false)
+    @JoinColumn(name = "hotel_id" , nullable = false)
     private Hotel hotel;
 
     @ManyToOne //İndirim
@@ -56,4 +56,5 @@ public class Relatives {
 
     @OneToMany(mappedBy = "relatives") //Rezervasyon
     private List<Rezervation> rezervations;
+
 }
