@@ -1,11 +1,17 @@
 package com.example.demoproject.controller;
 
+import com.example.demoproject.entity.ContactInformation;
 import com.example.demoproject.entity.Discount;
+import com.example.demoproject.repository.DiscountRepository;
 import com.example.demoproject.service.DiscountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/discount/v1")
@@ -13,6 +19,7 @@ import java.util.List;
 public class DiscountController {
 
     private final DiscountService discountService;
+    private final DiscountRepository discountRepository;
 
     @GetMapping(path = "getAllDiscount")
     public List<Discount> getAllDiscount() {
@@ -22,5 +29,15 @@ public class DiscountController {
     @PostMapping(path = "savedDiscount")
     public void saveDiscount(@RequestBody Discount discount) {
         discountService.saveDiscount(discount);
+    }
+
+    @DeleteMapping(path = "deleteDiscount/{id}")
+    public Map<String, Boolean> deleteDiscount(@PathVariable(value = "id") Long discountId) {
+        Discount discount = discountRepository.findById(discountId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact Information is not found for this id :: " + discountId));
+        discountRepository.delete(discount);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 }

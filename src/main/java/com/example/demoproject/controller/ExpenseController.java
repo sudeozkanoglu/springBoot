@@ -1,11 +1,17 @@
 package com.example.demoproject.controller;
 
+import com.example.demoproject.entity.ContactInformation;
 import com.example.demoproject.entity.Expense;
+import com.example.demoproject.repository.ExpenseRepository;
 import com.example.demoproject.service.ExpenseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/expense/v1")
@@ -13,6 +19,7 @@ import java.util.List;
 public class ExpenseController {
 
     private final ExpenseService expenseService;
+    private final ExpenseRepository expenseRepository;
 
     @GetMapping(path = "getAllExpenses")
     public List<Expense> getAllExpenses() {
@@ -22,5 +29,15 @@ public class ExpenseController {
     @PostMapping(path = "savedExpense")
     public void saveExpense(@RequestBody Expense expense) {
         expenseService.saveExpense(expense);
+    }
+
+    @DeleteMapping(path = "deleteExpense/{id}")
+    public Map<String, Boolean> deleteExpense(@PathVariable(value = "id") Long expenseId) {
+        Expense expense = expenseRepository.findById(expenseId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Expense is not found for this id :: " + expenseId));
+        expenseRepository.delete(expense);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 }

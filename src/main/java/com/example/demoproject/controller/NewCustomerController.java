@@ -23,4 +23,5 @@ public class NewCustomerController {
     public void saveNewCustomer(@RequestBody NewCustomer newCustomer) {
         newCustomerService.saveNewCustomer(newCustomer);
     }
+
 }
