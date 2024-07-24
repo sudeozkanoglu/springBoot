@@ -6,17 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "permanentCustomer")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PermanentCustomer {
+public class PermanentCustomer extends  Customer{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long permanentCustomerId;
-
-    @Column(name = "identity_number")
+    @Column(name = "permanent_identity_number")
     private String permanentCustomerIdentityNumber;
 
     //İndirim

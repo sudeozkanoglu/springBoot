@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "customers") //Database table name
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data //GET ve SET'leri bizim için yapar - Lombok kütüphanesi sayesinde - (encapsulation - get / set)
 @NoArgsConstructor //Lombok - parametresiz constructor
 @AllArgsConstructor //Lombok - parametreli constructor

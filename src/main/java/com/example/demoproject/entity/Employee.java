@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "employee")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
