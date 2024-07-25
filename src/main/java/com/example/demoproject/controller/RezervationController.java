@@ -35,11 +35,6 @@ public class RezervationController {
 
     @DeleteMapping(path = "deleteReservation/{id}")
     public Map<String, Boolean> deleteReservation(@PathVariable(value = "id") Long rezervationId) {
-        Rezervation rezervation = rezervationRepository.findById(rezervationId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Reservation is not found for this id :: " + rezervationId));
-        rezervationRepository.delete(rezervation);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return rezervationService.deleteReservation(rezervationId);
     }
 }

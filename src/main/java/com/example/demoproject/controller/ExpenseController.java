@@ -33,11 +33,6 @@ public class ExpenseController {
 
     @DeleteMapping(path = "deleteExpense/{id}")
     public Map<String, Boolean> deleteExpense(@PathVariable(value = "id") Long expenseId) {
-        Expense expense = expenseRepository.findById(expenseId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Expense is not found for this id :: " + expenseId));
-        expenseRepository.delete(expense);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return expenseService.deleteExpense(expenseId);
     }
 }

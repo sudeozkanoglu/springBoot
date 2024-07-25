@@ -33,11 +33,6 @@ public class IncomeController {
 
     @DeleteMapping(path = "deleteIncome/{id}")
     public Map<String, Boolean> deleteIncome(@PathVariable(value = "id") Long incomeId) {
-        Income income = incomeRepository.findById(incomeId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Income is not found for this id :: " + incomeId));
-        incomeRepository.delete(income);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return incomeService.deleteIncome(incomeId);
     }
 }

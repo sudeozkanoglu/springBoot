@@ -33,11 +33,6 @@ public class HotelController {
 
     @DeleteMapping(path = "deleteHotel/{id}")
     public Map<String, Boolean> deleteHotel(@PathVariable(value = "id") Long hotel_id) {
-        Hotel hotel = hotelRepository.findById(hotel_id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Hotel is not found for this id :: " + hotel_id));
-        hotelRepository.delete(hotel);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return hotelService.deleteHotel(hotel_id);
     }
 }

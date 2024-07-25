@@ -33,11 +33,6 @@ public class ActivityController {
 
     @DeleteMapping(path = "deleteActivity/{id}")
     public Map<String, Boolean> deleteActivity(@PathVariable(value = "id") Long activityId) {
-        Activity activity = activityRepository.findById(activityId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity is not found for this id :: " + activityId));
-        activityRepository.delete(activity);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return activityService.deleteActivity(activityId);
     }
 }

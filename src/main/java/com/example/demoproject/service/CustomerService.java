@@ -3,9 +3,13 @@ package com.example.demoproject.service;
 import com.example.demoproject.entity.Customer;
 import com.example.demoproject.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //Customer ile alakalı temel işlemlerin yapılacağı class
 
@@ -43,5 +47,15 @@ public class CustomerService {
     {
         this.customerRepository = customerRepository;
     }*/
+
+    public Map<String, Boolean> deleteCustomer(Long customerId)
+    {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer is not found for this id :: " + customerId));
+        customerRepository.delete(customer);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
+    }
 
 }

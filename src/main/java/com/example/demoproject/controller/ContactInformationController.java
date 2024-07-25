@@ -33,12 +33,7 @@ public class ContactInformationController {
 
     @DeleteMapping(path = "deleteContactInformation/{id}")
     public Map<String, Boolean> deleteContactInformation(@PathVariable(value = "id") Long contact_id) {
-        ContactInformation contactInformation = contactInformationRepository.findById(contact_id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact Information is not found for this id :: " + contact_id));
-        contactInformationRepository.delete(contactInformation);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return contactInformationService.deleteContactInformation(contact_id);
     }
 }
 

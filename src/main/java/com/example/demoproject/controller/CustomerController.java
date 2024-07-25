@@ -35,11 +35,6 @@ public class CustomerController {
 
     @DeleteMapping(path = "deleteCustomer/{id}")
     public Map<String, Boolean> deleteCustomer(@PathVariable(value = "id") Long customerId) {
-        Customer customer = customerRepository.findById(customerId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer is not found for this id :: " + customerId));
-        customerRepository.delete(customer);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return customerService.deleteCustomer(customerId);
     }
 }

@@ -33,11 +33,6 @@ public class DiscountController {
 
     @DeleteMapping(path = "deleteDiscount/{id}")
     public Map<String, Boolean> deleteDiscount(@PathVariable(value = "id") Long discountId) {
-        Discount discount = discountRepository.findById(discountId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact Information is not found for this id :: " + discountId));
-        discountRepository.delete(discount);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return discountService.deleteDiscount(discountId);
     }
 }

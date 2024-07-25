@@ -33,11 +33,6 @@ public class RoomTypeController {
 
     @DeleteMapping(path = "deleteRoomType/{id}")
     public Map<String, Boolean> deleteRoomType(@PathVariable(value = "id") Long roomTypeId) {
-        RoomType roomType = roomTypeRepository.findById(roomTypeId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Room Type is not found for this id :: " + roomTypeId));
-        roomTypeRepository.delete(roomType);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return roomTypeService.deleteRoomType(roomTypeId);
     }
 }

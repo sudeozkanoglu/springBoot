@@ -33,11 +33,6 @@ public class EmployeeController {
 
     @DeleteMapping(path = "deleteEmployee/{id}")
     public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employee_id) {
-        Employee employee = employeeRepository.findById(employee_id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee is not found for this id :: " + employee_id));
-        employeeRepository.delete(employee);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return employeeService.deleteEmployee(employee_id);
     }
 }
